@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 拿到socket 对象中的io对象 -->
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+        // 与服务端建立连接
+        let sock = io.connect('ws://localhost:3000/');
+        // sock 对象
+        console.log(sock);
+        // sock 对象属性 on 接受 emit 发送
+        sock.emit('a', 12);
+        sock.on('serverPush', (random) => {
+            console.log(`接收到服务器推送的数据-----${random}`);
+        });
+    </script>
+
+
+</body>
+</html>
